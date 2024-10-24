@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('content')
     <div class="row">
-        <h1 style="padding-left: 16px;">Registro de un nuevo usuario</h1>
+        <h1 style="padding-left: 32px;">Registro de un nuevo usuario</h1>
     </div>
     <hr>
-    <div class="row">
+    <div class="row" style="padding-left: 30%;">
         <div class="col-md-6">
         <div class="card card-outline card-primary">
                 <div class="card-header">
@@ -19,7 +19,10 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Nombre del usuario</label> <b>*</b>
-                                    <input type="text" name="name" class="form-control" required>
+                                    <input type="text" value="{{old('name')}}" name="name" class="form-control" required>
+                                    @error('name')
+                                    <small style="color: red;">{{$message}}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -28,7 +31,10 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">E-mail</label><b>*</b>
-                                    <input type="email" name="email" class="form-control" required>
+                                    <input type="email" value="{{old('email')}}" name="email" class="form-control" required>
+                                    @error('email')
+                                    <small style="color: red;">{{$message}}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -36,7 +42,10 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="">Contraseña</label><b>*</b>
-                                    <input type="password" name="password" class="form-control" required>
+                                    <input type="password" value="{{old('password')}}" name="password" class="form-control" required>
+                                    @error('password')
+                                    <small style="color: red;">{{$message}}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -45,6 +54,9 @@
                                 <div class="form-group">
                                     <label for="">Repita la contraseña</label><b>*</b>
                                     <input type="password" name="password_confirmation" class="form-control" required>
+                                    @error('password_confirmation')
+                                    <small style="color: red;">{{$message}}</small>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

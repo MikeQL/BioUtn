@@ -44,6 +44,11 @@ class UsuarioController extends Controller
         $usuario->email = $request->email;
         $usuario->password = Hash::make($request['password']);
         $usuario->save();
+
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.usuarios.index')
+        ->with('mensaje','Usuario registrado correctamente')
+        ->with('icono','success');
     }
 
 
