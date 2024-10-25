@@ -17,6 +17,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{url('dist/css/adminlte.min.css')}}">
   <!-- Iconos del bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- jQuery -->
+  <script src="{{url('plugins/jquery/jquery.min.js')}}"></script>
   <!-- Sweet alert 2 para que los mensaje se vean mas cool -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- datatables para que las tablas se vean bien chidas -->
@@ -196,8 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- REQUIRED SCRIPTS -->
 
-    <!-- jQuery -->
-    <script src="{{url('plugins/jquery/jquery.min.js')}}"></script>
+
     <!-- Bootstrap 4 -->
     <script src="{{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- datatables -->

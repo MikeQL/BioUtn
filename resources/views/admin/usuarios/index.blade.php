@@ -4,8 +4,8 @@
         <h1 style="padding-left: 32px;">Listado de Usuarios</h1>
     </div>
     <hr>
-    <div class="row" style="padding-left: 10%;">
-        <div class="col-md-10">
+    <div class="row" style="padding-left: 4px;">
+        <div class="col-md-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
                     <h3 class="card-title">Usuarios Registrados</h3>
@@ -31,8 +31,12 @@
                                     <td style="text-align: center;">{{$contador++}}</td>
                                     <td>{{$usuario->name}}</td>
                                     <td>{{$usuario->email}}</td>
-                                    <td>
-                                        ver / editar / borrar
+                                    <td style="text-align: center;">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="{{url('admin/usuarios/' .$usuario->id)}}" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="{{url('admin/usuarios/'.$usuario->id.'/edit')}}" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                                            <a href="{{url('admin/usuarios/'.$usuario->id.'/confirm-delete')}}" type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                                        </div>
                                     </td>
                                 </tr>  
                             @endforeach
@@ -41,18 +45,53 @@
                     <script>
                         $(function () {
                             $("#example1").DataTable({
-                            "responsive": true, "lengthChange": false, "autoWidth": false,
-                            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                                "pageLength": 10,
+                                "language": {
+                                    "emptyTable": "No hay información",
+                                    "info": "Mostrando de _START_ a _END_ de _TOTAL_ Usuarios",
+                                    "infoEmpty": "Mostrando 0 a 0 de 0 Usuarios",
+                                    "infoFiltered": "(Filtrado de _MAX_ total Usuarios)",
+                                    "infoPostFix": "",
+                                    "thousands": ",",
+                                    "lengthMenu": "Mostrar _MENU_ Usuarios",
+                                    "loadingRecords": "Cargando...",
+                                    "processing": "Procesando...",
+                                    "search": "Buscador:",
+                                    "zeroRecords": "Sin resultados encontrados",
+                                    "paginate": {
+                                        "first": "Primero",
+                                        "last": "Ultimo",
+                                        "next": "Siguiente",
+                                        "previous": "Anterior"
+                                    }
+                                },
+                                "responsive": true, "lengthChange": true, "autoWidth": false,
+                                buttons: [{
+                                    extend: 'collection',
+                                    text: 'Reportes',
+                                    orientation: 'landscape',
+                                    buttons: [{
+                                        text: 'Copiar',
+                                        extend: 'copy',
+                                    }, {
+                                        extend: 'pdf'
+                                    },{
+                                        extend: 'csv'
+                                    },{
+                                        extend: 'excel'
+                                    },{
+                                        text: 'Imprimir',
+                                        extend: 'print'
+                                    }
+                                    ]
+                                },
+                                    {
+                                        extend: 'colvis',
+                                        text: 'Visor de columnas',
+                                        collectionLayout: 'fixed three-column'
+                                    }
+                                ],
                             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-                            $('#example2').DataTable({
-                            "paging": true,
-                            "lengthChange": false,
-                            "searching": false,
-                            "ordering": true,
-                            "info": true,
-                            "autoWidth": false,
-                            "responsive": true,
-                            });
                         });
                     </script>
                 </div>
