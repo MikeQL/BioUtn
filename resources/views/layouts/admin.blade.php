@@ -132,6 +132,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas bi bi-person-circle"></i>
+                                <p>
+                                    Administradores
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{url('admin/administradores/create')}}" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Creación de Administradores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{url('admin/administradores')}}" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Listado de Administradores</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link" style="background-color: #a9200e">
                                 <i class="nav-icon fas bi bi-door-open-fill"></i>

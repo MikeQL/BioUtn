@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relacionando la tabla usuarios con la tabla administradores
+    public function administradors(){
+        return $this->hasOne(Administrador::class);
+    }
 }
