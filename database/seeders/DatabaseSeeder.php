@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        User::create([
+        /*User::create([
             'name'=>'Administrador',
             'email'=>'admin@utn.edu.ec',
             'password'=>Hash::make(value:'12345678')
@@ -51,6 +51,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'Estudiante 4',
             'email' => 'estudiante4@utn.edu.ec',
             'password' => Hash::make(value:'12345678')
-        ]);
+        ]);*/
+
+
+        $this->call([EstudianteSeeder::class,]);
     }
 }
