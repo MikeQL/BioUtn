@@ -23,7 +23,7 @@
                                 <td style="text-align: center;"><b>Apellidos</b></td>
                                 <td style="text-align: center;"><b>C.I</b></td>
                                 <td style="text-align: center;"><b>Celular</b></td>
-                                <td style="text-align: center;"><b>Fecha de naciemiento</b></td>
+                                <td style="text-align: center;"><b>Fecha de nacimiento</b></td>
                                 <td style="text-align: center;"><b>Dirección</b></td>
                                 <td style="text-align: center;"><b>E-mail</b></td>
                                 <td style="text-align: center;"><b>Acciones</b></td>
@@ -36,7 +36,11 @@
                                     <td style="text-align: center;">{{$contador++}}</td>
                                     <td>{{$administrador->nombres}}</td>
                                     <td>{{$administrador->apellidos}}</td>
-                                    <td>{{$administrador->email}}</td>
+                                    <td>{{$administrador->ci}}</td>
+                                    <td>{{$administrador->celular}}</td>
+                                    <td>{{$administrador->fecha_nacimiento}}</td>
+                                    <td>{{$administrador->direccion}}</td>
+                                    <td>{{$administrador->user->email}}</td>
                                     <td style="text-align: center;">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a href="{{url('admin/administradores/' .$administrador->id)}}" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>

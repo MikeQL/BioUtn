@@ -48,8 +48,11 @@ class AdministradorController extends Controller
             'celular'=>'required',
             'fecha_nacimiento'=>'required',
             'direccion'=>'required',
-            'email'=>'required|max:250|unique:users',
+            'email'=>'required|max:250|unique:users|regex:/^[\w\.-]+@utn\.edu\.ec$/',
             'password'=>'required|max:250|confirmed',
+        ],
+        [
+            'email.regex' => 'El email debe ser una dirección de correo con el dominio @utn.edu.ec',
         ]);
 
         // Accion de registro
@@ -82,9 +85,10 @@ class AdministradorController extends Controller
      * @param  \App\Models\Administrador  $administrador
      * @return \Illuminate\Http\Response
      */
-    public function show(Administrador $administrador)
+    public function show($id)
     {
-        //
+        $administrador = Administrador::with(relations:'user')->findOrFail($id);
+        return view('admin.administradores.show',compact("administrador"));
     }
 
     /**
@@ -93,9 +97,10 @@ class AdministradorController extends Controller
      * @param  \App\Models\Administrador  $administrador
      * @return \Illuminate\Http\Response
      */
-    public function edit(Administrador $administrador)
+    public function edit($id)
     {
-        //
+        $administrador = Administrador::with(relations:'user')->findOrFail($id);
+        return view('admin.administradores.edit',compact("administrador"));   
     }
 
     /**
@@ -105,9 +110,46 @@ class AdministradorController extends Controller
      * @param  \App\Models\Administrador  $administrador
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Administrador $administrador)
+    public function update(Request $request, $id)
     {
-        //
+        $administrador = Administrador::find($id);
+        //$usuario = User::find($id);
+        $request->validate([
+            'nombres'=>'required',
+            'apellidos'=>'required',
+            'ci'=>'required|unique:administradors,ci,'.$administrador->id,
+            'celular'=>'required',
+            'fecha_nacimiento'=>'required',
+            'direccion'=>'required',
+            'email'=>'required|max:250|regex:/^[\w\.-]+@utn\.edu\.ec$/|unique:users,email,' .$administrador->user->id,
+            'password'=>'nullable|max:250|confirmed',
+        ],
+        [
+            'email.regex' => 'El email debe ser una dirección de correo con el dominio @utn.edu.ec',
+        ]);
+
+        $administrador->nombres = $request->nombres;
+        $administrador->apellidos = $request->apellidos;
+        $administrador->ci = $request->ci;
+        $administrador->celular = $request->celular;
+        $administrador->fecha_nacimiento = $request->fecha_nacimiento;
+        $administrador->direccion = $request->direccion;
+        $administrador->save();
+
+        $usuario = User::find($administrador->user->id);
+        $usuario->name = $request->nombres;
+        $usuario->email = $request->email;
+        if($request->filled(key:'password')){
+            $usuario->password = Hash::make($request['password']);
+        }
+        $usuario->save();
+
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.administradores.index')
+        ->with('mensaje','Administrador actualizado correctamente')
+        ->with('icono','success');
+
+
     }
 
     /**
@@ -116,8 +158,27 @@ class AdministradorController extends Controller
      * @param  \App\Models\Administrador  $administrador
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Administrador $administrador)
+
+
+    public function confirmDelete($id){
+        $administrador = Administrador::with(relations:'user')->findOrFail($id);
+        return view('admin.administradores.delete',compact("administrador"));
+    }
+
+    public function destroy($id)
     {
-        //
+        $administrador = Administrador::find($id);
+
+        //Eliminar al usuario asociado 
+        $user = $administrador->user;
+        $user->delete();
+
+        //Eliminar al administrador
+        $administrador->delete();
+
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.administradores.index')
+        ->with('mensaje','Administrador eliminado correctamente')
+        ->with('icono','success');
     }
 }
