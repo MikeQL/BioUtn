@@ -2,21 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Estudiante;
+use App\Models\Material;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class EstudianteSeeder extends Seeder
+class MaterialSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run() : void
+    public function run()
     {
-        //ejecutamos el EstudianteFactory usando este seeder
-        Estudiante::factory()->count(200)->create(); 
-
+        Material::factory()->count(50)->create();
     }
 }

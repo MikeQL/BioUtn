@@ -54,6 +54,6 @@ class DatabaseSeeder extends Seeder
         ]);*/
 
 
-        $this->call([EstudianteSeeder::class,]);
+        $this->call([MaterialSeeder::class,]);
     }
 }
