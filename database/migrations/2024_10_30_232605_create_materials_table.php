@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('fecha_uso', length:100)->nullable();
             $table->string('fecha_entrega', length:100)->nullable();
             $table->string('observaciones', length:255)->nullable();
+            $table->string('laboratorio', length:255)->nullable();
 
 
             $table->timestamps();

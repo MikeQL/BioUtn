@@ -15,7 +15,7 @@
               <p>Usuarios</p>
             </div>
             <div class="icon">
-              <i class="ion fas bi bi-file-person"></i>
+              <i class="nav-icon fas bi bi-people-fill"></i>
             </div>
             <a href="{{url('admin/usuarios')}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
           </div>
@@ -30,9 +30,25 @@
               <p>Administradores</p>
             </div>
             <div class="icon">
-              <i class="ion fas bi bi-file-person"></i>
+              <i class="nav-icon fas bi bi-person-circle"></i>
             </div>
             <a href="{{url('admin/administradores')}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+      </div>
+
+
+      <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{{$total_materiales}}</h3>
+
+              <p>Materiales</p>
+            </div>
+            <div class="icon">
+              <i class="nav-icon fas bi bi-wrench-adjustable"></i>
+            </div>
+            <a href="{{url('admin/materiales')}}" class="small-box-footer">Más información <i class="fas fa-arrow-circle-right"></i></a>
           </div>
       </div>
     </div>

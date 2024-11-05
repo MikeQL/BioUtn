@@ -66,9 +66,10 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function show(Material $material)
+    public function show($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        return view('admin.materiales.show',compact("material"));
     }
 
     /**
@@ -77,9 +78,10 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function edit(Material $material)
+    public function edit($id)
     {
-        //
+        $material = Material::findOrFail($id);
+        return view('admin.materiales.edit',compact("material"));
     }
 
     /**
@@ -89,9 +91,25 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Material $material)
+    public function update(Request $request,$id)
     {
-        //
+        $material = Material::find($id);
+        $request->validate([
+            'nombre'=>'required',
+            'cantidad_total'=>'required',
+        ]);
+
+        $material->nombre = $request->nombre;
+        $material->volumen = $request->volumen;
+        $material->unidad = $request->unidad;
+        $material->cantidad_total = $request->cantidad_total;
+        $material->observaciones = $request->observaciones;
+        $material->save();
+
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.materiales.index')
+        ->with('mensaje','Material actualizado correctamente')
+        ->with('icono','success');
     }
 
     /**
@@ -100,8 +118,20 @@ class MaterialController extends Controller
      * @param  \App\Models\Material  $material
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Material $material)
+
+     public function confirmDelete($id)
+     {
+        $material = Material::findOrFail($id);
+        return view('admin.materiales.delete',compact("material"));
+     }
+
+    public function destroy($id)
     {
-        //
+        Material::destroy($id);
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.materiales.index')
+        ->with('mensaje','Material eliminado correctamente')
+        ->with('icono','success');
+
     }
 }
