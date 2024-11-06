@@ -18,4 +18,8 @@ class Equipo extends Model
     public function horarios(){
         return $this->hasMany(Horario::class);
     }
+
+    public function users(){
+        return $this->hasMany(User::class);
+    }
 }

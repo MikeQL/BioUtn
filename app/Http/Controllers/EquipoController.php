@@ -14,7 +14,8 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        //
+        $equipos = Equipo::with('users')->get();
+        return view('admin.equipos.index',compact("equipos"));
     }
 
     /**

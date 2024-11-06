@@ -46,4 +46,9 @@ class User extends Authenticatable
     public function administradors(){
         return $this->hasOne(Administrador::class);
     }
+
+    // Relacionando la tabla usuarios con la tabla equipos
+    public function equipos(){
+        return $this->hasMany(Equipo::class);
+    }
 }
