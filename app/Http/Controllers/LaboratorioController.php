@@ -64,9 +64,10 @@ class LaboratorioController extends Controller
      * @param  \App\Models\Laboratorio  $laboratorio
      * @return \Illuminate\Http\Response
      */
-    public function show(Laboratorio $laboratorio)
+    public function show($id)
     {
-        //
+        $laboratorio = Laboratorio::findOrFail($id);
+        return view('admin.laboratorios.show',compact("laboratorio"));
     }
 
     /**
@@ -75,9 +76,10 @@ class LaboratorioController extends Controller
      * @param  \App\Models\Laboratorio  $laboratorio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Laboratorio $laboratorio)
+    public function edit($id)
     {
-        //
+        $laboratorio = Laboratorio::findOrFail($id);
+        return view('admin.laboratorios.edit',compact("laboratorio"));
     }
 
     /**
@@ -87,9 +89,27 @@ class LaboratorioController extends Controller
      * @param  \App\Models\Laboratorio  $laboratorio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Laboratorio $laboratorio)
+    public function update(Request $request, $id)
     {
-        //
+        $laboratorio = Laboratorio::find($id);
+        $request->validate([
+            'nombre'=>'required',
+            'estado'=>'required',
+        ]);
+
+        // $laboratorio->nombre = $request->nombre;
+        // $laboratorio->ubicacion = $request->ubicacion;
+        // $laboratorio->capacidad = $request->capacidad;
+        // $laboratorio->telefono = $request->telefono;
+        // $laboratorio->estado = $request->estado;
+        // $laboratorio->save();
+        $laboratorio->update($request->all());
+
+
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.laboratorios.index')
+        ->with('mensaje','Laboratorio actualizado correctamente')
+        ->with('icono','success');
     }
 
     /**
@@ -98,8 +118,19 @@ class LaboratorioController extends Controller
      * @param  \App\Models\Laboratorio  $laboratorio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Laboratorio $laboratorio)
+
+     public function confirmDelete($id)
+     {
+        $laboratorio = Laboratorio::findOrFail($id);
+        return view('admin.laboratorios.delete',compact("laboratorio"));
+     }
+
+    public function destroy($id)
     {
-        //
+        Laboratorio::destroy($id);
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.laboratorios.index')
+        ->with('mensaje','laboratorio eliminado correctamente')
+        ->with('icono','success');
     }
 }
