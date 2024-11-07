@@ -12,9 +12,9 @@ class Horario extends Model
     protected $fillable = ['dia','hora_inicio','hora_fin','equipo_id','laboratorio_id'];
 
     public function equipo(){
-        return $this->belongTo(Equipo::class);
+        return $this->belongsTo(Equipo::class);
     }
     public function laboratorio(){
-        return $this->belongTo(Laboratorio::class);
+        return $this->belongsTo(Laboratorio::class);
     }
 }
