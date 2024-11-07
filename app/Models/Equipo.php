@@ -9,7 +9,7 @@ class Equipo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre','descripcion','cantidad','nro_serie','codigo','ubicacion','año_ingreso','fecha_actualizacion','adquisicion','estado','codigo_interno','user_id'];
+    protected $fillable = ['nombre','descripcion','cantidad','nro_serie','codigo','ubicacion','año_ingreso','fecha_actualizacion','adquisicion','estado','codigo_interno','observacion','user_id'];
 
     public function laboratorio(){
         return $this->belongsTo(Laboratorio::class);

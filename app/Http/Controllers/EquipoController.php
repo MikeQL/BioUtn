@@ -60,9 +60,10 @@ class EquipoController extends Controller
      * @param  \App\Models\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function show(Equipo $equipo)
+    public function show($id)
     {
-        //
+        $equipo = Equipo::findOrFail($id);
+        return view('admin.equipos.show',compact("equipo"));
     }
 
     /**
@@ -71,9 +72,10 @@ class EquipoController extends Controller
      * @param  \App\Models\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Equipo $equipo)
+    public function edit($id)
     {
-        //
+        $equipo = Equipo::findOrFail($id);
+        return view('admin.equipos.edit',compact("equipo"));
     }
 
     /**
@@ -83,9 +85,24 @@ class EquipoController extends Controller
      * @param  \App\Models\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Equipo $equipo)
+    public function update(Request $request,$id)
     {
-        //
+        $equipo = Equipo::find($id);
+        $request->validate([
+            'nombre'=>'required',
+            'descripcion'=>'required',
+            'cantidad'=>'required',
+            'codigo'=>'required',
+            'ubicacion'=>'required',
+            
+        ]);
+
+        $equipo->update($request->all());
+
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.equipos.index')
+        ->with('mensaje','Equipo actualizado correctamente')
+        ->with('icono','success');
     }
 
     /**
@@ -94,8 +111,19 @@ class EquipoController extends Controller
      * @param  \App\Models\Equipo  $equipo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equipo $equipo)
+
+     public function confirmDelete($id)
+     {
+        $equipo = Equipo::findOrFail($id);
+        return view('admin.equipos.delete',compact("equipo"));
+     }
+
+    public function destroy($id)
     {
-        //
+        Equipo::destroy($id);
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.equipos.index')
+        ->with('mensaje','Equipo eliminado correctamente')
+        ->with('icono','success');
     }
 }
