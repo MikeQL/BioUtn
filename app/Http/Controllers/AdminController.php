@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Administrador;
+use App\Models\Equipo;
 use App\Models\Laboratorio;
 use App\Models\Material;
 use App\Models\User;
@@ -15,6 +16,7 @@ class AdminController extends Controller
         $total_administradores = Administrador::count();
         $total_materiales = Material::count();
         $total_laboratorios = Laboratorio::count();
-        return view('admin.index',compact("total_usuarios", "total_administradores", "total_materiales","total_laboratorios"));
+        $total_equipos = Equipo::count();
+        return view('admin.index',compact("total_usuarios", "total_administradores", "total_materiales","total_laboratorios", "total_equipos"));
     }
 }

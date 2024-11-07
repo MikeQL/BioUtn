@@ -22,7 +22,7 @@
                                 <td style="text-align: center;"><b>Nombre</b></td>
                                 <td style="text-align: center;"><b>Descripción</b></td>
                                 <td style="text-align: center;"><b>Cantidad</b></td>
-                                <td style="text-align: center;"><b>Nro de serie</b></td>
+                                <td style="text-align: center; width: 200px;"><b>Nro de serie</b></td>
                                 <td style="text-align: center;"><b>Código Patrimonial</b></td>
                                 <td style="text-align: center;"><b>Ubicación</b></td>
                                 <td style="text-align: center;"><b>Acciones</b></td>
@@ -33,7 +33,7 @@
                             @foreach($equipos as $equipo)
                                 <tr>
                                     <td style="text-align: center;">{{$contador++}}</td>
-                                    <td>{{$equipo->nombre}}</td>
+                                    <td >{{$equipo->nombre}}</td>
                                     <td>{{$equipo->descripcion}}</td>
                                     <td>{{$equipo->cantidad}}</td>
                                     <td>{{$equipo->nro_serie}}</td>

@@ -26,7 +26,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.equipos.create');
     }
 
     /**
@@ -37,7 +37,21 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre'=>'required',
+            'descripcion'=>'required',
+            'cantidad'=>'required',
+            'codigo'=>'required',
+            'ubicacion'=>'required',
+            
+        ]);
+
+        Equipo::create($request->all());
+
+        //retornar a la vista cuando todo se complete correctamente
+        return redirect()->route(route:'admin.equipos.index')
+        ->with('mensaje','Equipo registrado correctamente')
+        ->with('icono','success');
     }
 
     /**

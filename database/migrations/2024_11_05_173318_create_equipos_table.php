@@ -18,14 +18,14 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('cantidad');
-            $table->string('nro_serie')->nullable();
+            $table->string('nro_serie',255)->nullable();
             $table->string('codigo');
             $table->string('ubicacion');
             $table->string('año_ingreso')->nullable();
             $table->string('fecha_actualizacion')->nullable();
-            $table->string('adquisicion')->nullable();
             $table->string('estado')->nullable();
             $table->string('codigo_interno')->nullable();
+            $table->string('observacion')->nullable();
 
             // relacionando los modelos equipos y users
             $table->unsignedBigInteger('user_id')->nullable();
