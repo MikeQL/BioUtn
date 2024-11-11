@@ -1,1 +1,1 @@
-<p>Aplicación web para un sistema de reservaciones de equipos, materiales e insumos del Laboratorio  de Biotecnología de la Universidad Técnica del Norte utilizand el framwork Laravel</p>
+<p>Aplicación web para un sistema de reservaciones de equipos, materiales e insumos del Laboratorio  de Biotecnología de la Universidad Técnica del Norte utilizand el framework Laravel</p>
